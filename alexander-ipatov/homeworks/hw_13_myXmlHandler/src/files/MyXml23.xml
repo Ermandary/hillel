@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xml_handler.Person>
+    <Person age="23" name="Alex" surname="Velikiy"/>
+    <Person age="13" name="Dima" surname="Nemchinskiy"/>
+    <Person age="32" name="AleBob" surname="Hadd"/>
+</xml_handler.Person>
