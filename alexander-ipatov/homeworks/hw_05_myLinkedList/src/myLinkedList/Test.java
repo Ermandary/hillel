@@ -1,10 +1,8 @@
 package myLinkedList;
 
-import myArrayList.MyArrayList;
-
 public class Test {
     public static void main(String[] args) {
-        MyArrayList<String> list = new MyArrayList<>();
+        MyLinkedList list = new MyLinkedList();
 
         list.add("Alex");
         list.add("Masha");
