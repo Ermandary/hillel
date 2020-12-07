@@ -1,0 +1,96 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide empty members
+
+package Calculator <<Frame>> {
+interface MainCalculator {
+eval(expression : String) : String
+setOperations(operations : Operation[])
+setValidators(validators : Validator[])
+}
+
+abstract class AbstractCalculator {
+- validators : Validator[]
+# operations : Operation[]
++ validateExpression(expression : String)
+}
+
+interface Operation {
+name() : String
+getDescription() : String
+getQuantity() : short
+getPriority() : short
+isCommutativity() : boolean
+isAssociativity() : boolean
+canEval(expression : String) : boolean
+eval(expression : String) : String
+}
+
+together {
+class OperationPI {
+}
+
+class OperationAdd {
+}
+
+class OperationSub {
+}
+
+class OperationMulty {
+}
+
+class OperationDiv {
+}
+}
+
+interface Validator {
+validate(expression : String)
+}
+
+together {
+class EmptyValidator {
+}
+
+class NullValidator {
+}
+}
+
+class MySimpleCalc {
+}
+
+class Program {
+- ENGINE : Engine
++main(args : String[])
+}
+
+class Engine {
+- mainCalc : AbstractCalculator
++ start(args : String[])
+- init()
++ stop()
+}
+}
+
+MainCalculator <|.. AbstractCalculator
+
+AbstractCalculator <|-- MySimpleCalc
+
+AbstractCalculator *-- Operation
+AbstractCalculator *-- Validator
+
+Program *-- Engine
+Program --> Engine : call
+
+Engine *-- AbstractCalculator
+Engine .> Operation : init
+Engine .> Validator : init
+
+Operation <|.. OperationPI
+Operation <|.. OperationAdd
+Operation <|.. OperationSub
+Operation <|.. OperationMulty
+Operation <|.. OperationDiv
+
+Validator <|.. EmptyValidator
+Validator <|.. NullValidator
+@enduml
